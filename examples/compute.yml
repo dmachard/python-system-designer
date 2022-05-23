@@ -1,0 +1,33 @@
+architecture: !design
+  name: "[diagram example]"
+
+  groups:
+  - !gp &regionA
+      label: "Region A"
+  - !gp &regionB
+      label: "Region B"
+
+  nodes:
+  - !nd &as
+      label: AS
+      group: *regionA
+  - !nd &api
+      label: API
+      kind: compute/vm
+      group: *regionB
+      align: vertical
+  - !nd &ops
+      kind: compute/server
+      label: "OPS"
+      style: dashed
+      
+
+  links:
+  - !lk 
+      origin: *ops
+      target: *as
+      description: web application
+      port: https
+  - !lk 
+      origin: *ops
+      target: *api
