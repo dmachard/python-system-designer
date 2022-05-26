@@ -14,9 +14,9 @@ class Design:
         "compound":"true",
         "rankdir": "TB",
         "pad": "1.0",
-        "splines": "ortho",
-        "nodesep": "0.5",
-        "ranksep": "1.5",
+        "splines": "polyline",
+        "nodesep": "1.0",
+        "ranksep": "2.0",
         "fontname": "Sans-Serif",
         "fontsize": "15",
     }
@@ -50,7 +50,7 @@ class Design:
                 nodes.append(n.id)
         return nodes
 
-    def draw(self, output_file, output_format="png"):
+    def draw(self, output_file, output_format="png", debug=False):
         """draw the final architecture"""
         # reverse the list
         self.groups.reverse()
@@ -105,7 +105,8 @@ class Design:
         # render the diagram
         self.root_graph.render(filename=output_file, format=output_format)
         # remove the graphviz file
-        os.remove(output_file)
+        if not debug:
+            os.remove(output_file)
 
         # create html legend
         self.write_legend(output_file)
@@ -175,7 +176,7 @@ def yaml_loader():
     loader.add_constructor("!lk", link.constructor)
     return loader
 
-def generate(archi_file, output_file, output_format):
+def generate(archi_file, output_file, output_format, debug):
     """load the yaml file and draw the associated design"""
     try:
         with open(archi_file, "rb") as f:
@@ -188,4 +189,4 @@ def generate(archi_file, output_file, output_format):
             sys.exit(1)
 
         # draw schema
-        design["architecture"].draw(output_file, output_format)
+        design["architecture"].draw(output_file, output_format, debug)

@@ -8,7 +8,7 @@ def setup_cli():
     options.add_argument("-y", help="architecture yaml file", required=True) 
     options.add_argument("-o", help="output file path", required=True) 
     options.add_argument("-f", help="output file format (default: %(default)r)", default="png") 
-    options.add_argument('-v', action='store_true', help="verbose mode")
+    options.add_argument('-d', action='store_true', help="debug mode")
 
     return options
 
@@ -17,7 +17,7 @@ def start_up():
     options = setup_cli()
     args = options.parse_args()
 
-    designer.generate(archi_file=args.y, output_file=args.o, output_format=args.f)
+    designer.generate(archi_file=args.y, output_file=args.o, output_format=args.f, debug=args.d)
 
 if __name__ == '__main__':
     start_up()

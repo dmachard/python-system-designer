@@ -4,7 +4,7 @@ import graphviz
 from system_designer import common
 
 class Group:
-    bgcolors = ("#E5F5FD", "#EBF3E7", "#ECE8F6", "#FDF7E3")
+    bgcolors = ( "#eaedef",  "#E5F5FD", "#FDF7E3", "#EBF3E7")
     group_attrs = {
         "shape": "box",
         "fontname": "Sans-Serif",
@@ -12,10 +12,10 @@ class Group:
         "fontcolor": "black",
         "margin": "20.0",
         "style": "filled",
-        "color": "#e1f6fe",
-        "fillcolor": "#e1f6fe",
+        "color": "#eaedef",
+        "fillcolor": "#eaedef",
         "labeljust": "l",
-        "labelloc": "b"
+        "labelloc": "b",
     }
     def __init__(self, label, parent=None, **attrs):
         """Group class"""
